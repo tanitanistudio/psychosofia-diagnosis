@@ -14,27 +14,44 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg-deep: #080B14;
+  --color-v-main: #D6A84A;
+  --color-v-sub: #F0B35A;
+  --color-v-dark: #8A5A1F;
+  --color-e-main: #D84F8B;
+  --color-e-sub: #A94F9F;
+  --color-e-dark: #6E2E5F;
+  --color-l-main: #3B8CFF;
+  --color-l-sub: #2563D9;
+  --color-l-dark: #123C8C;
+  --color-f-main: #78B95A;
+  --color-f-sub: #3FA66B;
+  --color-f-dark: #2E6B3F;
+  --color-bg: #07101C;
+  --color-card: #10182A;
+  --color-text: #F3EFE6;
+
+  /* 互換エイリアス */
+  --bg-deep: #07101C;
   --bg-primary: #0D1120;
   --bg-secondary: #131826;
-  --bg-card: #1A2038;
-  --bg-card-hover: #1F2640;
-  --border: #252D44;
-  --border-subtle: #1C2234;
-  --text-primary: #EDEBE4;
+  --bg-card: #10182A;
+  --bg-card-hover: #1a2235;
+  --border: #1E2A3A;
+  --border-subtle: #162030;
+  --text-primary: #F3EFE6;
   --text-secondary: #9A9EB8;
   --text-muted: #565D7A;
-  --brand: #C9A84C;
-  --brand-light: #D9BC70;
-  --brand-dark: #A88C3A;
-  --axis-W: #E07B45;
-  --axis-W-muted: rgba(224,123,69,.18);
-  --axis-E: #C4668A;
-  --axis-E-muted: rgba(196,102,138,.18);
-  --axis-L: #5A9FD6;
-  --axis-L-muted: rgba(90,159,214,.18);
-  --axis-F: #6BAF8A;
-  --axis-F-muted: rgba(107,175,138,.18);
+  --brand: #D6A84A;
+  --brand-light: #F0B35A;
+  --brand-dark: #8A5A1F;
+  --axis-V: #D6A84A;
+  --axis-V-muted: rgba(214,168,74,.18);
+  --axis-E: #D84F8B;
+  --axis-E-muted: rgba(216,79,139,.18);
+  --axis-L: #3B8CFF;
+  --axis-L-muted: rgba(59,140,255,.18);
+  --axis-F: #78B95A;
+  --axis-F-muted: rgba(120,185,90,.18);
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 20px;
@@ -220,7 +237,7 @@ img { max-width: 100%; display: block; }
   filter: blur(42px);
   opacity: .6;
 }
-.orb-W { background: var(--axis-W); top: 0; left: 0; animation: orbW 7s ease-in-out infinite alternate; }
+.orb-V { background: var(--axis-V); top: 0; left: 0; animation: orbV 7s ease-in-out infinite alternate; }
 .orb-E { background: var(--axis-E); top: 0; right: 0; animation: orbE 8s ease-in-out infinite alternate; }
 .orb-L { background: var(--axis-L); bottom: 0; left: 0; animation: orbL 9s ease-in-out infinite alternate; }
 .orb-F { background: var(--axis-F); bottom: 0; right: 0; animation: orbF 6s ease-in-out infinite alternate; }
@@ -234,7 +251,7 @@ img { max-width: 100%; display: block; }
   opacity: .8;
   z-index: 2;
 }
-@keyframes orbW { from { transform: translate(0,0) scale(1); } to { transform: translate(12px,8px) scale(1.1); } }
+@keyframes orbV { from { transform: translate(0,0) scale(1); } to { transform: translate(12px,8px) scale(1.1); } }
 @keyframes orbE { from { transform: translate(0,0) scale(1); } to { transform: translate(-10px,10px) scale(1.08); } }
 @keyframes orbL { from { transform: translate(0,0) scale(1); } to { transform: translate(10px,-8px) scale(1.12); } }
 @keyframes orbF { from { transform: translate(0,0) scale(1); } to { transform: translate(-12px,-6px) scale(1.06); } }
@@ -287,7 +304,7 @@ section { padding: 5rem 1.25rem; }
   height: 3px;
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
-.axis-card.W::before { background: var(--axis-W); }
+.axis-card.V::before { background: var(--axis-V); }
 .axis-card.E::before { background: var(--axis-E); }
 .axis-card.L::before { background: var(--axis-L); }
 .axis-card.F::before { background: var(--axis-F); }
@@ -299,7 +316,7 @@ section { padding: 5rem 1.25rem; }
   font-size: 1.3rem;
   margin-bottom: 1rem;
 }
-.axis-card.W .axis-icon { background: var(--axis-W-muted); }
+.axis-card.V .axis-icon { background: var(--axis-V-muted); }
 .axis-card.E .axis-icon { background: var(--axis-E-muted); }
 .axis-card.L .axis-icon { background: var(--axis-L-muted); }
 .axis-card.F .axis-icon { background: var(--axis-F-muted); }
@@ -310,7 +327,7 @@ section { padding: 5rem 1.25rem; }
   letter-spacing: .08em;
   margin-bottom: .25rem;
 }
-.axis-card.W .axis-letter { color: var(--axis-W); }
+.axis-card.V .axis-letter { color: var(--axis-V); }
 .axis-card.E .axis-letter { color: var(--axis-E); }
 .axis-card.L .axis-letter { color: var(--axis-L); }
 .axis-card.F .axis-letter { color: var(--axis-F); }
@@ -334,10 +351,10 @@ section { padding: 5rem 1.25rem; }
   border-radius: 100px;
   border: 1px solid;
 }
-.axis-card.W .axis-tag { color: var(--axis-W); border-color: rgba(224,123,69,.35); background: var(--axis-W-muted); }
-.axis-card.E .axis-tag { color: var(--axis-E); border-color: rgba(196,102,138,.35); background: var(--axis-E-muted); }
-.axis-card.L .axis-tag { color: var(--axis-L); border-color: rgba(90,159,214,.35); background: var(--axis-L-muted); }
-.axis-card.F .axis-tag { color: var(--axis-F); border-color: rgba(107,175,138,.35); background: var(--axis-F-muted); }
+.axis-card.V .axis-tag { color: var(--axis-V); border-color: rgba(214,168,74,.35); background: var(--axis-V-muted); }
+.axis-card.E .axis-tag { color: var(--axis-E); border-color: rgba(216,79,139,.35); background: var(--axis-E-muted); }
+.axis-card.L .axis-tag { color: var(--axis-L); border-color: rgba(59,140,255,.35); background: var(--axis-L-muted); }
+.axis-card.F .axis-tag { color: var(--axis-F); border-color: rgba(120,185,90,.35); background: var(--axis-F-muted); }
 
 /* ─── How section ────────────────── */
 .steps {
@@ -452,7 +469,7 @@ section { padding: 5rem 1.25rem; }
   border-radius: var(--radius-sm);
   margin-bottom: .75rem;
 }
-.type-card.W .type-code-badge { background: var(--axis-W-muted); color: var(--axis-W); }
+.type-card.V .type-code-badge { background: var(--axis-V-muted); color: var(--axis-V); }
 .type-card.E .type-code-badge { background: var(--axis-E-muted); color: var(--axis-E); }
 .type-card.L .type-code-badge { background: var(--axis-L-muted); color: var(--axis-L); }
 .type-card.F .type-code-badge { background: var(--axis-F-muted); color: var(--axis-F); }
@@ -480,10 +497,10 @@ section { padding: 5rem 1.25rem; }
   border-radius: 100px;
   border: 1px solid;
 }
-.func-chip.W { color: var(--axis-W); border-color: rgba(224,123,69,.4); background: var(--axis-W-muted); }
-.func-chip.E { color: var(--axis-E); border-color: rgba(196,102,138,.4); background: var(--axis-E-muted); }
-.func-chip.L { color: var(--axis-L); border-color: rgba(90,159,214,.4); background: var(--axis-L-muted); }
-.func-chip.F { color: var(--axis-F); border-color: rgba(107,175,138,.4); background: var(--axis-F-muted); }
+.func-chip.V { color: var(--axis-V); border-color: rgba(214,168,74,.4); background: var(--axis-V-muted); }
+.func-chip.E { color: var(--axis-E); border-color: rgba(216,79,139,.4); background: var(--axis-E-muted); }
+.func-chip.L { color: var(--axis-L); border-color: rgba(59,140,255,.4); background: var(--axis-L-muted); }
+.func-chip.F { color: var(--axis-F); border-color: rgba(120,185,90,.4); background: var(--axis-F-muted); }
 .func-arrow { color: var(--text-muted); font-size: .75rem; }
 .types-more {
   text-align: center;
@@ -539,6 +556,64 @@ footer {
 /* ─── Reveal animation ───────────── */
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ── Characters showcase ─────────── */
+.characters-section { background: var(--bg-secondary); padding: 5rem 1.25rem; }
+.char-group { margin-bottom: 3rem; }
+.char-group-header {
+  display: flex; align-items: center; gap: .75rem;
+  margin-bottom: 1.25rem; padding-bottom: .75rem;
+  border-bottom: 2px solid;
+}
+.char-group-header.V { border-color: var(--axis-V); }
+.char-group-header.E { border-color: var(--axis-E); }
+.char-group-header.L { border-color: var(--axis-L); }
+.char-group-header.F { border-color: var(--axis-F); }
+.char-group-letter {
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: 1.1rem;
+  width: 36px; height: 36px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.char-group-header.V .char-group-letter { background: var(--axis-V-muted); color: var(--axis-V); }
+.char-group-header.E .char-group-letter { background: var(--axis-E-muted); color: var(--axis-E); }
+.char-group-header.L .char-group-letter { background: var(--axis-L-muted); color: var(--axis-L); }
+.char-group-header.F .char-group-letter { background: var(--axis-F-muted); color: var(--axis-F); }
+.char-group-name { font-size: .9rem; color: var(--text-secondary); }
+.char-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .75rem;
+}
+.char-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: .75rem .5rem 1rem;
+  text-align: center;
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: default;
+}
+.char-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-card); }
+.char-card img {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0 auto .5rem;
+  display: block;
+  border: 2px solid var(--border);
+}
+.char-code {
+  font-family: 'Inter', sans-serif; font-weight: 700; font-size: .68rem;
+  letter-spacing: .08em; margin-bottom: .2rem;
+  padding: .15rem .4rem; border-radius: 4px; display: inline-block;
+}
+.char-code.V { color: var(--axis-V); background: var(--axis-V-muted); }
+.char-code.E { color: var(--axis-E); background: var(--axis-E-muted); }
+.char-code.L { color: var(--axis-L); background: var(--axis-L-muted); }
+.char-code.F { color: var(--axis-F); background: var(--axis-F-muted); }
+.char-name { font-size: .78rem; color: var(--text-secondary); margin-top: .2rem; }
+@media (min-width: 640px) { .char-grid { grid-template-columns: repeat(6, 1fr); } }
+@media (min-width: 1080px) { .characters-section { padding: 7rem 2rem; } }
 
 /* ─── Responsive ─────────────────── */
 @media (min-width: 640px) {
@@ -602,7 +677,7 @@ footer {
     </div>
 
     <div class="hero-visual" aria-hidden="true" role="presentation">
-      <div class="orb orb-W"></div>
+      <div class="orb orb-V"></div>
       <div class="orb orb-E"></div>
       <div class="orb orb-L"></div>
       <div class="orb orb-F"></div>
@@ -620,9 +695,9 @@ footer {
       アレクサンドル・アファナシエフが提唱した性格類型論。人間の心理を4つの機能で捉え、その優先順位が各人に固有の「精神の構造」を形成するとする。
     </p>
     <div class="axis-grid reveal">
-      <div class="axis-card W">
+      <div class="axis-card V">
         <div class="axis-icon">🔥</div>
-        <div class="axis-letter">W — WILL</div>
+        <div class="axis-letter">V — WILL</div>
         <h3 class="axis-name">意志</h3>
         <p class="axis-desc">目標への執着、自律性、他者への影響力。自分の意志でどこまで動けるかを規定する機能。</p>
         <div class="axis-tags">
@@ -734,12 +809,12 @@ footer {
     <h2 class="section-title reveal" id="types-title">24のタイプのうち、あなたはどれ？</h2>
     <p class="section-desc reveal">4機能の優先順位の組み合わせで、24の固有タイプが生まれます。</p>
     <div class="types-grid">
-      <div class="type-card W reveal">
-        <div class="type-code-badge">WELF</div>
+      <div class="type-card V reveal">
+        <div class="type-code-badge">VELF</div>
         <h3 class="type-name">ナポレオン</h3>
         <p class="type-catchcopy">意志と情熱で時代を動かす</p>
         <div class="type-func-order" aria-label="機能優先順位">
-          <span class="func-chip W">意志</span>
+          <span class="func-chip V">意志</span>
           <span class="func-arrow" aria-hidden="true">›</span>
           <span class="func-chip E">感情</span>
           <span class="func-arrow" aria-hidden="true">›</span>
@@ -749,13 +824,13 @@ footer {
         </div>
       </div>
       <div class="type-card E reveal">
-        <div class="type-code-badge">EWLF</div>
+        <div class="type-code-badge">EVLF</div>
         <h3 class="type-name">情熱家</h3>
         <p class="type-catchcopy">感情と意志で心を揺さぶる</p>
         <div class="type-func-order" aria-label="機能優先順位">
           <span class="func-chip E">感情</span>
           <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip W">意志</span>
+          <span class="func-chip V">意志</span>
           <span class="func-arrow" aria-hidden="true">›</span>
           <span class="func-chip L">論理</span>
           <span class="func-arrow" aria-hidden="true">›</span>
@@ -763,7 +838,7 @@ footer {
         </div>
       </div>
       <div class="type-card L reveal">
-        <div class="type-code-badge">LEWF</div>
+        <div class="type-code-badge">LEVF</div>
         <h3 class="type-name">ソクラテス</h3>
         <p class="type-catchcopy">真理を問い続ける哲学者</p>
         <div class="type-func-order" aria-label="機能優先順位">
@@ -771,13 +846,13 @@ footer {
           <span class="func-arrow" aria-hidden="true">›</span>
           <span class="func-chip E">感情</span>
           <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip W">意志</span>
+          <span class="func-chip V">意志</span>
           <span class="func-arrow" aria-hidden="true">›</span>
           <span class="func-chip F">身体</span>
         </div>
       </div>
       <div class="type-card F reveal">
-        <div class="type-code-badge">FLEW</div>
+        <div class="type-code-badge">FLEV</div>
         <h3 class="type-name">ナチュラリスト</h3>
         <p class="type-catchcopy">感覚と論理で自然と調和する</p>
         <div class="type-func-order" aria-label="機能優先順位">
@@ -787,11 +862,84 @@ footer {
           <span class="func-arrow" aria-hidden="true">›</span>
           <span class="func-chip E">感情</span>
           <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip W">意志</span>
+          <span class="func-chip V">意志</span>
         </div>
       </div>
     </div>
     <p class="types-more reveal">他 20 のタイプは診断で発見できます</p>
+  </div>
+</section>
+
+<!-- Characters showcase -->
+<section class="characters-section" aria-labelledby="chars-title">
+  <div class="section-inner">
+    <p class="section-tag reveal">24のキャラクター</p>
+    <h2 class="section-title reveal" id="chars-title">あなたはどのタイプ？</h2>
+
+    <!-- V系 -->
+    <div class="char-group reveal">
+      <div class="char-group-header V">
+        <span class="char-group-letter">V</span>
+        <span class="char-group-name">意志系 — オレンジ・ゴールド</span>
+      </div>
+      <div class="char-grid">
+        <div class="char-card"><img src="img/VELF.png" alt="ナポレオン" loading="lazy"><div class="char-code V">VELF</div><div class="char-name">ナポレオン</div></div>
+        <div class="char-card"><img src="img/VEFL.png" alt="覇者" loading="lazy"><div class="char-code V">VEFL</div><div class="char-name">覇者</div></div>
+        <div class="char-card"><img src="img/VLEF.png" alt="哲人将軍" loading="lazy"><div class="char-code V">VLEF</div><div class="char-name">哲人将軍</div></div>
+        <div class="char-card"><img src="img/VLFE.png" alt="設計者" loading="lazy"><div class="char-code V">VLFE</div><div class="char-name">設計者</div></div>
+        <div class="char-card"><img src="img/VFLE.png" alt="先駆者" loading="lazy"><div class="char-code V">VFLE</div><div class="char-name">先駆者</div></div>
+        <div class="char-card"><img src="img/VFEL.png" alt="武将" loading="lazy"><div class="char-code V">VFEL</div><div class="char-name">武将</div></div>
+      </div>
+    </div>
+
+    <!-- E系 -->
+    <div class="char-group reveal">
+      <div class="char-group-header E">
+        <span class="char-group-letter">E</span>
+        <span class="char-group-name">感情系 — ピンク・マゼンタ</span>
+      </div>
+      <div class="char-grid">
+        <div class="char-card"><img src="img/EVLF.png" alt="情熱家" loading="lazy"><div class="char-code E">EVLF</div><div class="char-name">情熱家</div></div>
+        <div class="char-card"><img src="img/EVFL.png" alt="詩人" loading="lazy"><div class="char-code E">EVFL</div><div class="char-name">詩人</div></div>
+        <div class="char-card"><img src="img/ELVF.png" alt="教師" loading="lazy"><div class="char-code E">ELVF</div><div class="char-name">教師</div></div>
+        <div class="char-card"><img src="img/ELFV.png" alt="作家" loading="lazy"><div class="char-code E">ELFV</div><div class="char-name">作家</div></div>
+        <div class="char-card"><img src="img/EFVL.png" alt="芸術家" loading="lazy"><div class="char-code E">EFVL</div><div class="char-name">芸術家</div></div>
+        <div class="char-card"><img src="img/EFLV.png" alt="審美家" loading="lazy"><div class="char-code E">EFLV</div><div class="char-name">審美家</div></div>
+      </div>
+    </div>
+
+    <!-- L系 -->
+    <div class="char-group reveal">
+      <div class="char-group-header L">
+        <span class="char-group-letter">L</span>
+        <span class="char-group-name">論理系 — ブルー</span>
+      </div>
+      <div class="char-grid">
+        <div class="char-card"><img src="img/LEVF.png" alt="ソクラテス" loading="lazy"><div class="char-code L">LEVF</div><div class="char-name">ソクラテス</div></div>
+        <div class="char-card"><img src="img/LEFV.png" alt="分析家" loading="lazy"><div class="char-code L">LEFV</div><div class="char-name">分析家</div></div>
+        <div class="char-card"><img src="img/LVEF.png" alt="戦略家" loading="lazy"><div class="char-code L">LVEF</div><div class="char-name">戦略家</div></div>
+        <div class="char-card"><img src="img/LVFE.png" alt="建築家" loading="lazy"><div class="char-code L">LVFE</div><div class="char-name">建築家</div></div>
+        <div class="char-card"><img src="img/LFEV.png" alt="職人" loading="lazy"><div class="char-code L">LFEV</div><div class="char-name">職人</div></div>
+        <div class="char-card"><img src="img/LFVE.png" alt="技術者" loading="lazy"><div class="char-code L">LFVE</div><div class="char-name">技術者</div></div>
+      </div>
+    </div>
+
+    <!-- F系 -->
+    <div class="char-group reveal">
+      <div class="char-group-header F">
+        <span class="char-group-letter">F</span>
+        <span class="char-group-name">身体系 — グリーン</span>
+      </div>
+      <div class="char-grid">
+        <div class="char-card"><img src="img/FVEL.png" alt="戦士" loading="lazy"><div class="char-code F">FVEL</div><div class="char-name">戦士</div></div>
+        <div class="char-card"><img src="img/FVLE.png" alt="冒険家" loading="lazy"><div class="char-code F">FVLE</div><div class="char-name">冒険家</div></div>
+        <div class="char-card"><img src="img/FEVL.png" alt="癒し手" loading="lazy"><div class="char-code F">FEVL</div><div class="char-name">癒し手</div></div>
+        <div class="char-card"><img src="img/FELV.png" alt="共感者" loading="lazy"><div class="char-code F">FELV</div><div class="char-name">共感者</div></div>
+        <div class="char-card"><img src="img/FLVE.png" alt="職人気質" loading="lazy"><div class="char-code F">FLVE</div><div class="char-name">職人気質</div></div>
+        <div class="char-card"><img src="img/FLEV.png" alt="ナチュラリスト" loading="lazy"><div class="char-code F">FLEV</div><div class="char-name">ナチュラリスト</div></div>
+      </div>
+    </div>
+
   </div>
 </section>
 

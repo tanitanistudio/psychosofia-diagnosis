@@ -13,21 +13,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg-deep: #080B14;
+  --bg-deep: #07101C;
   --bg-primary: #0D1120;
   --bg-secondary: #131826;
-  --bg-card: #1A2038;
+  --bg-card: #10182A;
   --border: #252D44;
   --border-subtle: #1C2234;
-  --text-primary: #EDEBE4;
+  --text-primary: #F3EFE6;
   --text-secondary: #9A9EB8;
   --text-muted: #565D7A;
   --brand: #C9A84C;
   --brand-light: #D9BC70;
-  --axis-W: #E07B45; --axis-W-muted: rgba(224,123,69,.18);
-  --axis-E: #C4668A; --axis-E-muted: rgba(196,102,138,.18);
-  --axis-L: #5A9FD6; --axis-L-muted: rgba(90,159,214,.18);
-  --axis-F: #6BAF8A; --axis-F-muted: rgba(107,175,138,.18);
+  --axis-V: #D6A84A; --axis-V-muted: rgba(214,168,74,.18);
+  --axis-E: #D84F8B; --axis-E-muted: rgba(216,79,139,.18);
+  --axis-L: #3B8CFF; --axis-L-muted: rgba(59,140,255,.18);
+  --axis-F: #78B95A; --axis-F-muted: rgba(120,185,90,.18);
   --type-color: var(--brand);
   --type-muted: rgba(201,168,76,.18);
 }
@@ -137,10 +137,10 @@ body {
   border: 1px solid;
   white-space: nowrap;
 }
-.func-badge.W { color:var(--axis-W); border-color:rgba(224,123,69,.4); background:var(--axis-W-muted); }
-.func-badge.E { color:var(--axis-E); border-color:rgba(196,102,138,.4); background:var(--axis-E-muted); }
-.func-badge.L { color:var(--axis-L); border-color:rgba(90,159,214,.4); background:var(--axis-L-muted); }
-.func-badge.F { color:var(--axis-F); border-color:rgba(107,175,138,.4); background:var(--axis-F-muted); }
+.func-badge.V { color:var(--axis-V); border-color:rgba(214,168,74,.4); background:var(--axis-V-muted); }
+.func-badge.E { color:var(--axis-E); border-color:rgba(216,79,139,.4); background:var(--axis-E-muted); }
+.func-badge.L { color:var(--axis-L); border-color:rgba(59,140,255,.4); background:var(--axis-L-muted); }
+.func-badge.F { color:var(--axis-F); border-color:rgba(120,185,90,.4); background:var(--axis-F-muted); }
 .func-arrow { color:var(--text-muted); font-size:.9rem; padding-bottom:1.1rem; }
 
 .type-desc {
@@ -310,6 +310,19 @@ body {
 @media (min-width:720px) {
   .result-hero { padding:3rem 2.5rem; }
 }
+
+/* ── Character image ───────── */
+.type-chara-img {
+  width: 180px; height: 180px; margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--type-color);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--type-color) 30%, transparent);
+}
+.type-chara-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
 </style>
 </head>
 <body>
@@ -328,131 +341,131 @@ body {
 <script>
 // ─── 24 Type definitions ────────────────────────────────────────────────────
 const TYPES = {
-  "WELF":{ name:"ナポレオン", dominant:"W", catchcopy:"意志と情熱で時代を動かす",
+  "VELF":{ name:"ナポレオン", dominant:"V", catchcopy:"意志と情熱で時代を動かす",
     desc:"強烈な意志力と感情的カリスマを持ち、人を鼓舞しながら目標へ突き進む型。論理的な計画力も備え、感情と理性のバランスで大きな変革を起こす力を持つ。身体感覚は後回しになりやすい。",
     str:["鋼の意志力と目標への執念","感情で人を動かすカリスマ性","逆境でも自己信念を保てる"],
     chg:["他者の意見を受け入れにくい","身体疲労のサインを見逃しがち","論理的議論への苦手意識が出ることも"]
   },
-  "WEFL":{ name:"覇者", dominant:"W", catchcopy:"力強い意志と感情で道を切り拓く",
+  "VEFL":{ name:"覇者", dominant:"V", catchcopy:"力強い意志と感情で道を切り拓く",
     desc:"強い意志と感情的な存在感で人を引きつける型。実践的な行動力も高く、目の前の状況に機敏に対応する。論理的な分析よりも意志と感情で即断・即行する傾向がある。",
     str:["強い意志と豊かな感情表現の融合","実践的な行動力と決断の速さ","感情的な場での存在感の大きさ"],
     chg:["論理的な説明・説得が二次的になる","身体的ケアに意識が向きにくい","感情的に突き進み後悔することも"]
   },
-  "WLEF":{ name:"哲人将軍", dominant:"W", catchcopy:"論理と意志で理想を実現する",
+  "VLEF":{ name:"哲人将軍", dominant:"V", catchcopy:"論理と意志で理想を実現する",
     desc:"強い意志と論理的思考を組み合わせ、理想の実現に向けて計画的に動く型。感情的共感力も持ち、人の心を理解しながら戦略を遂行する。身体的なニーズが最も後回しになりやすい。",
     str:["意志と論理の強力な組み合わせ","感情知性で人間関係を円滑に","長期的な戦略立案と実行力"],
     chg:["身体シグナルを無視しがち","完璧主義から協調が難しくなることも","感情表現より目標優先になりがち"]
   },
-  "WLFE":{ name:"設計者", dominant:"W", catchcopy:"緻密な計画と意志で世界を形にする",
+  "VLFE":{ name:"設計者", dominant:"V", catchcopy:"緻密な計画と意志で世界を形にする",
     desc:"意志と論理で緻密な計画を立て、実践的に遂行する型。物質的・構造的な問題解決が得意で、感情よりも合理的な判断を優先する。感情表現が最も苦手な側面を持つ。",
     str:["論理と意志による精密な計画力","物質的・実践的な問題解決力","原則に基づいた一貫した行動"],
     chg:["感情表現・感情的コミュニケーションが難しい","人の感情ニーズを見落とすことも","計画変更への抵抗感が強い"]
   },
-  "WFLE":{ name:"武将", dominant:"W", catchcopy:"実践的行動力と意志で目標を掴む",
-    desc:"身体的な直感と強い意志で行動する型。目の前の状況を素早く把握し、論理よりも実践力で解決する。感情よりも行動を優先し、感情表現が最も弱い傾向がある。",
-    str:["身体的行動力と意志の強力な融合","直感的な状況判断と即断力","論理的な戦術把握力"],
-    chg:["感情的な共感・表現が最後回し","感情的なつながりの構築が難しい","論理より行動優先で計画性が欠けることも"]
-  },
-  "WFEL":{ name:"先駆者", dominant:"W", catchcopy:"本能と意志で未来を照らす",
+  "VFLE":{ name:"先駆者", dominant:"V", catchcopy:"本能と意志で未来を照らす",
     desc:"意志と身体感覚の直感で先を読み、感情で人を動かす型。論理的な説明よりも内なる確信と行動で道を切り拓く。独自の感覚と意志力で新しい領域に踏み込んでいく。",
     str:["直感と意志による先見性","感情的な人間関係の構築力","身体感覚による本質的な判断"],
     chg:["論理的な説明・説得が苦手","論理を重視する人との衝突","直感と行動を重視しすぎて計画が崩れることも"]
   },
-  "EWLF":{ name:"情熱家", dominant:"E", catchcopy:"感情と意志で心を揺さぶる",
+  "VFEL":{ name:"武将", dominant:"V", catchcopy:"実践的行動力と意志で目標を掴む",
+    desc:"身体的な直感と強い意志で行動する型。目の前の状況を素早く把握し、論理よりも実践力で解決する。感情よりも行動を優先し、感情表現が最も弱い傾向がある。",
+    str:["身体的行動力と意志の強力な融合","直感的な状況判断と即断力","論理的な戦術把握力"],
+    chg:["感情的な共感・表現が最後回し","感情的なつながりの構築が難しい","論理より行動優先で計画性が欠けることも"]
+  },
+  "EVLF":{ name:"情熱家", dominant:"E", catchcopy:"感情と意志で心を揺さぶる",
     desc:"豊かな感情と強い意志を兼ね備え、人の心を動かしながら変革をもたらす型。論理的な説得力も持ち、感情と理性のバランスで影響力を発揮する。身体的ニーズが後回しになりやすい。",
     str:["感情的なカリスマと感染力","意志による感情表現の一貫性","論理的な裏付けで説得力を高められる"],
     chg:["感情に振り回されることがある","身体的限界を無視して突っ走る","強い意志が衝突を生むことも"]
   },
-  "EWFL":{ name:"詩人", dominant:"E", catchcopy:"感性と意志で美を生み出す",
+  "EVFL":{ name:"詩人", dominant:"E", catchcopy:"感性と意志で美を生み出す",
     desc:"感情的な豊かさと強い意志、そして身体的な美的感受性を持つ型。創造的表現を通じて美と感動を届ける。論理的な分析よりも感性と意志で行動する。",
     str:["感情と意志による創造的表現力","身体的な美的感受性の高さ","感情的な深さで人を惹きつける力"],
-    chg:["論理的思考が二次的になりがち","感情で突き進み、論理的ミスを犯すことも","実用性より表現を優先する傾向"]
+    chg:["論理的思考が二次的になりがち","感情で突き進み論理的ミスを犯すことも","実用性より表現を優先する傾向"]
   },
-  "ELWF":{ name:"教師", dominant:"E", catchcopy:"共感と論理で人を育てる",
+  "ELVF":{ name:"教師", dominant:"E", catchcopy:"共感と論理で人を育てる",
     desc:"感情的共感力と論理的思考を組み合わせ、人の成長を支援する型。意志的なサポート力も持ち、人への深い関心と論理的な指導を両立する。身体的ニーズを後回しにしやすい。",
     str:["感情と論理の統合による指導力","意志を持った継続的なサポート力","人の成長への深い関心と洞察"],
     chg:["身体的ニーズを後回しにしやすい","感情的疲弊を起こしやすい","説得しすぎて相手のペースを乱すことも"]
   },
-  "ELFW":{ name:"作家", dominant:"E", catchcopy:"感情と論理で魂に届く言葉を紡ぐ",
+  "ELFV":{ name:"作家", dominant:"E", catchcopy:"感情と論理で魂に届く言葉を紡ぐ",
     desc:"感情と論理の深い融合で、人の内面に届く表現を生む型。体験的な理解力も高く、感情を精密に言語化する能力を持つ。意志的な主導力は最も後退する傾向がある。",
     str:["感情と論理の精緻な融合","体験を通じた深い理解と表現力","感情の言語化能力の高さ"],
     chg:["意志的な行動力・主導力が弱い","内省過多になりやすい","自己表現への固執が生まれることも"]
   },
-  "EFLW":{ name:"芸術家", dominant:"E", catchcopy:"感情と感覚で唯一の世界を作る",
+  "EFVL":{ name:"芸術家", dominant:"E", catchcopy:"感情と感覚で唯一の世界を作る",
     desc:"感情と身体的感受性が融合した、独自の美的世界を持つ型。感覚的な体験を感情と合わせて表現する創造力が高い。論理や意志による目標追求は最も苦手とする。",
     str:["感情と感覚の鮮烈な融合による創造力","唯一無二の美的感性と世界観","感覚的体験の深い味わい方"],
     chg:["論理的な説明・計画が苦手","意志的な目標設定・追求が弱い","感情に流されやすい一面"]
   },
-  "EFWL":{ name:"審美家", dominant:"E", catchcopy:"美と感覚で世界を豊かに彩る",
+  "EFLV":{ name:"審美家", dominant:"E", catchcopy:"美と感覚で世界を豊かに彩る",
     desc:"感情と身体的感覚の洗練された融合で、独自の美学を持って生きる型。意志的な献身力も持つが、論理的な分析は最も後退する。美的体験を深く享受する能力が際立つ。",
     str:["感情・感覚・意志が織りなす美学","深い体験的享受能力","意志的な美への献身力"],
     chg:["論理的判断・説明が最も苦手","論理的な人との摩擦が生じやすい","自己耽溺になることも"]
   },
-  "LEWF":{ name:"ソクラテス", dominant:"L", catchcopy:"真理を問い続ける哲学者",
+  "LEVF":{ name:"ソクラテス", dominant:"L", catchcopy:"真理を問い続ける哲学者",
     desc:"純粋な論理力と感情的知性を組み合わせ、真理の探求に生涯を捧げる型。意志による思索の継続力も持ち、問いかけを通じて人と知的対話を楽しむ。身体的ニーズが最後回しになりやすい。",
     str:["純粋な論理力と真理探求心","感情知性による深い人間理解","意志による思索の継続力"],
     chg:["身体的ニーズを最後回しにする","過分析で行動が遅れることがある","感情表現よりも論理を優先しすぎることも"]
   },
-  "LEFW":{ name:"分析家", dominant:"L", catchcopy:"論理と感性で本質を見抜く",
+  "LEFV":{ name:"分析家", dominant:"L", catchcopy:"論理と感性で本質を見抜く",
     desc:"論理と感情的洞察を組み合わせ、状況の本質を見抜く型。体験的な検証力も高く、感情と論理の統合で深い理解を得る。意志的な主導力は最も後退する傾向がある。",
     str:["論理と感情の洗練された統合","体験を通じた深い検証能力","感情的文脈の中での鋭い分析力"],
     chg:["意志的な行動力・主導力が弱い","身体ケアを後回しにしやすい","決断まで時間がかかることがある"]
   },
-  "LWEF":{ name:"戦略家", dominant:"L", catchcopy:"論理と意志で勝利を設計する",
+  "LVEF":{ name:"戦略家", dominant:"L", catchcopy:"論理と意志で勝利を設計する",
     desc:"論理的な戦略立案と意志の実行力を組み合わせ、目標を合理的に達成する型。感情的な判断力も補完的に持つ。身体的なシグナルは最も後回しになりやすい。",
     str:["論理的戦略立案と意志による実行力","感情的判断による補完的な洞察","長期的な計画と着実な遂行力"],
     chg:["身体シグナルを無視しがち","感情表現が二次的になる","合理性に偏り感情的な対話が難しいことも"]
   },
-  "LWFE":{ name:"建築家", dominant:"L", catchcopy:"論理で複雑さを秩序に変える",
+  "LVFE":{ name:"建築家", dominant:"L", catchcopy:"論理で複雑さを秩序に変える",
     desc:"論理と意志で複雑な問題を構造化し、実践的な解決策を生み出す型。物質的・実用的な観点から世界を秩序立てる。感情的な表現は最も後退する傾向がある。",
     str:["論理と意志による精密な構造化能力","実践的・実用的な問題解決力","意志による品質と完成度の追求"],
     chg:["感情表現・感情的コミュニケーションが最も苦手","人の感情的ニーズを見落とすことも","変化や感情的状況への適応が難しい"]
   },
-  "LFEW":{ name:"職人", dominant:"L", catchcopy:"論理と技で完璧を追い求める",
+  "LFEV":{ name:"職人", dominant:"L", catchcopy:"論理と技で完璧を追い求める",
     desc:"論理と身体的精度を融合させ、高い完成度を追求する型。感情的なケアとの組み合わせで深みを持つ。意志の柔軟性は低く、自分のペースとこだわりを重視する。",
     str:["論理と身体技術の精緻な融合","感情的な深さと思いやり","完成度への強いこだわりと継続力"],
     chg:["意志の柔軟性が低く頑固になることも","感情的なやり取りでの衝突","完璧主義から仕事が長引くことも"]
   },
-  "LFWE":{ name:"技術者", dominant:"L", catchcopy:"精確な論理で現実を変革する",
+  "LFVE":{ name:"技術者", dominant:"L", catchcopy:"精確な論理で現実を変革する",
     desc:"論理と実践的な精確さで現実に機能的な価値を生み出す型。意志による品質追求と体験的な技術力を持つ。感情的な側面は最も後退し、感情表現が課題になりやすい。",
     str:["論理と実践の精緻な統合","意志による品質と完成度の追求","体験的な技術力と検証能力"],
     chg:["感情表現・コミュニケーションが最も苦手","感情的なつながりの構築に課題","実用性優先で感情的側面を軽視することも"]
   },
-  "FWEL":{ name:"戦士", dominant:"F", catchcopy:"身体と意志で現実と向き合う",
+  "FVEL":{ name:"戦士", dominant:"F", catchcopy:"身体と意志で現実と向き合う",
     desc:"鋭い身体感覚と強い意志で現実を直接的に把握し行動する型。感情的な信念の強さも持ち、論理的な戦術判断力で状況を制御する。身体と意志が最大の武器。",
     str:["身体的知性と意志の強力な統合","感情的な信念と行動力","論理的な戦術判断力"],
     chg:["感情を後回しにしがち","論理より行動優先で衝突することも","過剰な身体的負荷を自分に課す傾向"]
   },
-  "FWLE":{ name:"冒険家", dominant:"F", catchcopy:"感覚と意志で未知へ挑む",
+  "FVLE":{ name:"冒険家", dominant:"F", catchcopy:"感覚と意志で未知へ挑む",
     desc:"身体的な行動力と意志の強さで、未知の領域に飛び込んでいく型。論理的な状況判断力も持ち、実践的な問題解決を得意とする。感情表現が最も後退する傾向がある。",
     str:["身体的行動力と意志の強さ","論理的な状況判断と実践的解決力","未知への挑戦を恐れない開拓精神"],
     chg:["感情表現・感情的なつながりが最も苦手","感情的共感が求められる状況での困難","行動優先で計画性が欠けることも"]
   },
-  "FELW":{ name:"癒し手", dominant:"F", catchcopy:"身体の共感で心を癒やす",
+  "FEVL":{ name:"癒し手", dominant:"F", catchcopy:"身体の共感で心を癒やす",
     desc:"身体と感情の深い融合で、人の痛みを直感的に感じ取り、ケアを届ける型。論理的なサポートも補完的に持つ。意志的な主導力は最も後退し、自己犠牲になりやすい。",
     str:["身体と感情による深い直感的共感力","感情的なケアと論理的なサポートの統合","人の苦しみへの鋭い感受性"],
     chg:["意志的な主導力・自己主張が弱い","感情に流されやすく自己犠牲になりやすい","感覚・感情を優先しすぎることも"]
   },
-  "FEWL":{ name:"共感者", dominant:"F", catchcopy:"身体で感じる深い思いやり",
+  "FELV":{ name:"共感者", dominant:"F", catchcopy:"身体で感じる深い思いやり",
     desc:"身体感覚と感情の鋭い統合で、相手の状態を深く感知し寄り添う型。意志的な献身力も持つが、論理的な分析は最も後退する。身体的共感が最大の強みとなる。",
     str:["身体感覚と感情の鋭い統合による深い共感","意志的な献身力とケアの継続性","人の身体的・感情的状態への敏感な感知"],
     chg:["論理的な説明・判断が最も苦手","論理的な人との対話での困難","自己後回しになりやすい傾向"]
   },
-  "FLWE":{ name:"職人気質", dominant:"F", catchcopy:"身体と論理で精緻を極める",
+  "FLVE":{ name:"職人気質", dominant:"F", catchcopy:"身体と論理で精緻を極める",
     desc:"身体的な精度と論理を融合させ、実用的な美と機能を追求する型。意志的な品質追求と感情的な深みも持つ。高い完成度へのこだわりを体と頭で体現する。",
     str:["身体的精度と論理の精緻な融合","意志的な品質と完成度の追求","感情的な深みと思いやりの組み合わせ"],
     chg:["感情表現が最も後退する","コミュニケーションでの感情的な困難","完璧主義からくるストレス"]
   },
-  "FLEW":{ name:"ナチュラリスト", dominant:"F", catchcopy:"感覚と論理で自然と調和する",
+  "FLEV":{ name:"ナチュラリスト", dominant:"F", catchcopy:"感覚と論理で自然と調和する",
     desc:"身体感覚と論理的思考で自然の法則を体得し、感情とともに調和して生きる型。意志的な主導力は最も弱く、環境や状況に柔軟に応じる傾向がある。",
     str:["身体・論理・感情の自然な統合","環境への高い適応性と柔軟性","感覚と論理で世界を深く理解する力"],
     chg:["意志的な主導力・自己主張が最も弱い","流されやすく優先順位が定まりにくい","自己の方向性を見失うことも"]
   }
 };
 
-const AXIS_LABELS = { W:"意志", E:"感情", L:"論理", F:"身体" };
-const AXIS_COLORS = { W:"var(--axis-W)", E:"var(--axis-E)", L:"var(--axis-L)", F:"var(--axis-F)" };
-const AXIS_MUTED  = { W:"var(--axis-W-muted)", E:"var(--axis-E-muted)", L:"var(--axis-L-muted)", F:"var(--axis-F-muted)" };
+const AXIS_LABELS = { V:"意志", E:"感情", L:"論理", F:"身体" };
+const AXIS_COLORS = { V:"var(--axis-V)", E:"var(--axis-E)", L:"var(--axis-L)", F:"var(--axis-F)" };
+const AXIS_MUTED  = { V:"var(--axis-V-muted)", E:"var(--axis-E-muted)", L:"var(--axis-L-muted)", F:"var(--axis-F-muted)" };
 const RESULT_KEY  = 'aiknow_psychosofia_result';
 
 // ─── Bootstrap ──────────────────────────────────────────────────────────────
@@ -567,6 +580,9 @@ function buildHTML(code, t, order, scores, isBorder) {
 
   return `
     <section class="result-hero" aria-labelledby="typeName">
+      <div class="type-chara-img">
+        <img src="img/${code}.png" alt="${t.name}のキャラクター" onerror="this.style.display='none'">
+      </div>
       <div class="type-code-big" aria-label="タイプコード ${code}">${code}</div>
       <h1 class="type-name-big" id="typeName">${t.name}</h1>
       <p class="type-catchcopy">${t.catchcopy}</p>

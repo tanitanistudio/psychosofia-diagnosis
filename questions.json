@@ -7,7 +7,7 @@
     "total_questions": 32,
     "questions_per_axis": 8,
     "axes": {
-      "W": "意志（Will）",
+      "V": "意志（Воля）",
       "E": "感情（Emotion）",
       "L": "論理（Logic）",
       "F": "身体・物質（Physics）"
@@ -24,17 +24,17 @@
     },
     "reversed_counts": {
       "total": 10,
-      "by_axis": { "W": 3, "E": 3, "L": 2, "F": 2 }
+      "by_axis": { "V": 3, "E": 3, "L": 2, "F": 2 }
     },
-    "shuffle_pattern": "WELF×8ラウンド循環（同一軸の連続出題を防止）",
+    "shuffle_pattern": "VELF×8ラウンド循環（同一軸の連続出題を防止）",
     "scoring_formula": "adjusted = (direction === 1) ? value : (8 - value); axis_score += adjusted * weight; for each contribution: contribution.axis_score += adjusted * contribution.weight",
-    "type_determination": "4軸スコアを降順ランキング → 順列文字列がタイプコード（例: WELF, LEWF）",
+    "type_determination": "4軸スコアを降順ランキング → 順列文字列がタイプコード（例: VELF, LEVF）",
     "tie_handling": "最高スコア差が3点以下の場合は境界タイプフラグを設定し、上位2候補を提示"
   },
   "questions": [
     {
       "id": "q01",
-      "axis": "W",
+      "axis": "V",
       "text": "一度決めたことは、周囲の反対があっても最後まで貫き通す",
       "weight": 1.4,
       "direction": 1,
@@ -60,7 +60,7 @@
       "direction": 1,
       "reversed": false,
       "contributions": [
-        { "axis": "W", "weight": 0.3 }
+        { "axis": "V", "weight": 0.3 }
       ]
     },
     {
@@ -74,7 +74,7 @@
     },
     {
       "id": "q05",
-      "axis": "W",
+      "axis": "V",
       "text": "重要な決断をするとき、他者の承認が得られるまで行動を保留することが多い",
       "weight": 1.2,
       "direction": -1,
@@ -112,7 +112,7 @@
     },
     {
       "id": "q09",
-      "axis": "W",
+      "axis": "V",
       "text": "困難な状況でも、自分の内面の力で乗り越えられると感じる",
       "weight": 1.3,
       "direction": 1,
@@ -148,7 +148,7 @@
     },
     {
       "id": "q13",
-      "axis": "W",
+      "axis": "V",
       "text": "物事の方向性を他者に委ねることに、居心地の悪さを感じる",
       "weight": 1.3,
       "direction": 1,
@@ -188,7 +188,7 @@
     },
     {
       "id": "q17",
-      "axis": "W",
+      "axis": "V",
       "text": "他人から「こうすべき」と強く言われると、むしろ反発したくなる",
       "weight": 1.0,
       "direction": 1,
@@ -224,7 +224,7 @@
     },
     {
       "id": "q21",
-      "axis": "W",
+      "axis": "V",
       "text": "自分の価値観や信念は、状況が変わっても揺らぎにくい",
       "weight": 1.2,
       "direction": 1,
@@ -262,7 +262,7 @@
     },
     {
       "id": "q25",
-      "axis": "W",
+      "axis": "V",
       "text": "長期的な目標よりも、その場の流れに身を任せることの方が多い",
       "weight": 1.1,
       "direction": -1,
@@ -300,7 +300,7 @@
     },
     {
       "id": "q29",
-      "axis": "W",
+      "axis": "V",
       "text": "自分の意志よりも、周囲の期待や意向を優先して行動することが多い",
       "weight": 1.2,
       "direction": -1,

@@ -9,25 +9,25 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg-deep: #080B14;
+  --bg-deep: #07101C;
   --bg-primary: #0D1120;
-  --bg-card: #1A2038;
+  --bg-card: #10182A;
   --bg-secondary: #131826;
   --border: #252D44;
   --border-subtle: #1C2234;
-  --text-primary: #EDEBE4;
+  --text-primary: #F3EFE6;
   --text-secondary: #9A9EB8;
   --text-muted: #565D7A;
   --brand: #C9A84C;
   --brand-light: #D9BC70;
-  --axis-W: #E07B45;
-  --axis-W-muted: rgba(224,123,69,.18);
-  --axis-E: #C4668A;
-  --axis-E-muted: rgba(196,102,138,.18);
-  --axis-L: #5A9FD6;
-  --axis-L-muted: rgba(90,159,214,.18);
-  --axis-F: #6BAF8A;
-  --axis-F-muted: rgba(107,175,138,.18);
+  --axis-V: #D6A84A;
+  --axis-V-muted: rgba(214,168,74,.18);
+  --axis-E: #D84F8B;
+  --axis-E-muted: rgba(216,79,139,.18);
+  --axis-L: #3B8CFF;
+  --axis-L-muted: rgba(59,140,255,.18);
+  --axis-F: #78B95A;
+  --axis-F-muted: rgba(120,185,90,.18);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -343,8 +343,8 @@ body {
   <p class="calc-sub">4つの機能スコアを算出しています</p>
   <div class="axis-bars" id="axisBars" aria-hidden="true">
     <div class="axis-bar-row">
-      <span class="axis-bar-label" style="color:var(--axis-W)">W</span>
-      <div class="axis-bar-track"><div class="axis-bar-fill" id="barW" style="background:var(--axis-W)"></div></div>
+      <span class="axis-bar-label" style="color:var(--axis-V)">V</span>
+      <div class="axis-bar-track"><div class="axis-bar-fill" id="barV" style="background:var(--axis-V)"></div></div>
     </div>
     <div class="axis-bar-row">
       <span class="axis-bar-label" style="color:var(--axis-E)">E</span>
@@ -362,37 +362,37 @@ body {
 </div>
 
 <script>
-// ─── Question data (32 questions, WELF×8 round-robin) ──────────────────────
+// ─── Question data (32 questions, VELF×8 round-robin) ──────────────────────
 const QUESTIONS = [
-  { id:"q01", axis:"W", text:"一度決めたことは、周囲の反対があっても最後まで貫き通す", weight:1.4, direction:1, reversed:false, contributions:[{axis:"L",weight:0.3}] },
+  { id:"q01", axis:"V", text:"一度決めたことは、周囲の反対があっても最後まで貫き通す", weight:1.4, direction:1, reversed:false, contributions:[{axis:"L",weight:0.3}] },
   { id:"q02", axis:"E", text:"感情を率直に言葉や表情に出すことに、抵抗を感じない", weight:1.4, direction:1, reversed:false, contributions:[] },
-  { id:"q03", axis:"L", text:"問題に直面したとき、まず情報を整理して論理的に分析する", weight:1.4, direction:1, reversed:false, contributions:[{axis:"W",weight:0.3}] },
+  { id:"q03", axis:"L", text:"問題に直面したとき、まず情報を整理して論理的に分析する", weight:1.4, direction:1, reversed:false, contributions:[{axis:"V",weight:0.3}] },
   { id:"q04", axis:"F", text:"身体的な感覚（疲れ・痛み・快感）に敏感で、よく意識する", weight:1.3, direction:1, reversed:false, contributions:[] },
-  { id:"q05", axis:"W", text:"重要な決断をするとき、他者の承認が得られるまで行動を保留することが多い", weight:1.2, direction:-1, reversed:true, contributions:[] },
+  { id:"q05", axis:"V", text:"重要な決断をするとき、他者の承認が得られるまで行動を保留することが多い", weight:1.2, direction:-1, reversed:true, contributions:[] },
   { id:"q06", axis:"E", text:"場の雰囲気や他者の感情の変化に、敏感に気づく方だ", weight:1.2, direction:1, reversed:false, contributions:[{axis:"F",weight:0.3}] },
   { id:"q07", axis:"L", text:"複雑な事柄を、体系的に構造化して考えることが得意だ", weight:1.5, direction:1, reversed:false, contributions:[] },
   { id:"q08", axis:"F", text:"食事・睡眠・空間の心地よさなど、物質的な環境を整えることを大切にしている", weight:1.2, direction:1, reversed:false, contributions:[] },
-  { id:"q09", axis:"W", text:"困難な状況でも、自分の内面の力で乗り越えられると感じる", weight:1.3, direction:1, reversed:false, contributions:[] },
+  { id:"q09", axis:"V", text:"困難な状況でも、自分の内面の力で乗り越えられると感じる", weight:1.3, direction:1, reversed:false, contributions:[] },
   { id:"q10", axis:"E", text:"感情的な表現よりも、事実や論理で物事を伝えることを好む", weight:1.1, direction:-1, reversed:true, contributions:[] },
   { id:"q11", axis:"L", text:"データや根拠のない主張よりも、論理的な根拠に基づく議論を好む", weight:1.3, direction:1, reversed:false, contributions:[] },
   { id:"q12", axis:"F", text:"体の状態を無視してでも、アイデアや思考に没頭することが多い", weight:1.0, direction:-1, reversed:true, contributions:[] },
-  { id:"q13", axis:"W", text:"物事の方向性を他者に委ねることに、居心地の悪さを感じる", weight:1.3, direction:1, reversed:false, contributions:[] },
+  { id:"q13", axis:"V", text:"物事の方向性を他者に委ねることに、居心地の悪さを感じる", weight:1.3, direction:1, reversed:false, contributions:[] },
   { id:"q14", axis:"E", text:"相手の気持ちに共感したとき、自分の感情も同じように動く", weight:1.3, direction:1, reversed:false, contributions:[{axis:"F",weight:0.3}] },
   { id:"q15", axis:"L", text:"効率や合理性よりも、感情や気分を優先して行動することが多い", weight:1.0, direction:-1, reversed:true, contributions:[] },
   { id:"q16", axis:"F", text:"美しいものや心地よいものに囲まれた環境が、自分のパフォーマンスに大きく影響する", weight:1.2, direction:1, reversed:false, contributions:[{axis:"E",weight:0.3}] },
-  { id:"q17", axis:"W", text:"他人から「こうすべき」と強く言われると、むしろ反発したくなる", weight:1.0, direction:1, reversed:false, contributions:[] },
+  { id:"q17", axis:"V", text:"他人から「こうすべき」と強く言われると、むしろ反発したくなる", weight:1.0, direction:1, reversed:false, contributions:[] },
   { id:"q18", axis:"E", text:"自分の内側で何かが揺れているとき、それを表現せずにはいられない", weight:1.3, direction:1, reversed:false, contributions:[] },
   { id:"q19", axis:"L", text:"矛盾や論理的な誤りに気づくと、そのままにしておくことができない", weight:1.1, direction:1, reversed:false, contributions:[] },
   { id:"q20", axis:"F", text:"体を動かすこと（運動・手作業・散歩）で、気持ちが整うことが多い", weight:1.1, direction:1, reversed:false, contributions:[] },
-  { id:"q21", axis:"W", text:"自分の価値観や信念は、状況が変わっても揺らぎにくい", weight:1.2, direction:1, reversed:false, contributions:[{axis:"L",weight:0.3}] },
+  { id:"q21", axis:"V", text:"自分の価値観や信念は、状況が変わっても揺らぎにくい", weight:1.2, direction:1, reversed:false, contributions:[{axis:"L",weight:0.3}] },
   { id:"q22", axis:"E", text:"喜びや悲しみを周囲と共有したいという欲求が強い", weight:1.2, direction:1, reversed:false, contributions:[] },
   { id:"q23", axis:"L", text:"直感や感覚よりも、順序立てた思考プロセスを信頼する", weight:1.2, direction:1, reversed:false, contributions:[] },
   { id:"q24", axis:"F", text:"感覚的な経験（味・音・手触り）を細かく味わうことが多い", weight:1.2, direction:1, reversed:false, contributions:[] },
-  { id:"q25", axis:"W", text:"長期的な目標よりも、その場の流れに身を任せることの方が多い", weight:1.1, direction:-1, reversed:true, contributions:[] },
+  { id:"q25", axis:"V", text:"長期的な目標よりも、その場の流れに身を任せることの方が多い", weight:1.1, direction:-1, reversed:true, contributions:[] },
   { id:"q26", axis:"E", text:"感情的になっている人を見ると、関与せず距離を置きたくなる", weight:1.0, direction:-1, reversed:true, contributions:[] },
   { id:"q27", axis:"L", text:"新しい概念や仕組みを学ぶとき、原理・原則から理解しようとする", weight:1.2, direction:1, reversed:false, contributions:[] },
   { id:"q28", axis:"F", text:"実際に手を動かして体験することで、物事をより深く理解できる", weight:1.2, direction:1, reversed:false, contributions:[{axis:"L",weight:0.3}] },
-  { id:"q29", axis:"W", text:"自分の意志よりも、周囲の期待や意向を優先して行動することが多い", weight:1.2, direction:-1, reversed:true, contributions:[] },
+  { id:"q29", axis:"V", text:"自分の意志よりも、周囲の期待や意向を優先して行動することが多い", weight:1.2, direction:-1, reversed:true, contributions:[] },
   { id:"q30", axis:"E", text:"感情よりも理性が、自分の最終的な判断をコントロールしていると感じる", weight:1.1, direction:-1, reversed:true, contributions:[] },
   { id:"q31", axis:"L", text:"思いつきやその場の勢いで行動することが多い", weight:1.0, direction:-1, reversed:true, contributions:[] },
   { id:"q32", axis:"F", text:"物事の実用性や具体的な感触よりも、抽象的なアイデアや概念を重視する", weight:1.0, direction:-1, reversed:true, contributions:[] }
@@ -401,7 +401,7 @@ const QUESTIONS = [
 const TOTAL = QUESTIONS.length;
 const STORAGE_KEY = 'aiknow_psychosofia_progress';
 const RESULT_KEY  = 'aiknow_psychosofia_result';
-const AXIS_COLORS = { W:'var(--axis-W)', E:'var(--axis-E)', L:'var(--axis-L)', F:'var(--axis-F)' };
+const AXIS_COLORS = { V:'var(--axis-V)', E:'var(--axis-E)', L:'var(--axis-L)', F:'var(--axis-F)' };
 
 // ─── State ──────────────────────────────────────────────────────────────────
 let state = { currentIndex: 0, answers: {}, sessionId: null };
@@ -565,7 +565,7 @@ function finishQuiz() {
 
   // Animate bars
   setTimeout(() => {
-    ['W','E','L','F'].forEach(axis => {
+    ['V','E','L','F'].forEach(axis => {
       const bar = document.getElementById('bar' + axis);
       bar.style.width = ((scores[axis] / maxScore) * 100) + '%';
     });
@@ -597,7 +597,7 @@ function finishQuiz() {
 }
 
 function calculateScores() {
-  const scores = { W:0, E:0, L:0, F:0 };
+  const scores = { V:0, E:0, L:0, F:0 };
   QUESTIONS.forEach(q => {
     const raw = state.answers[q.id];
     if (!raw) return;
