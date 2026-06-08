@@ -480,12 +480,22 @@ section { padding: 5rem 1.25rem; }
   gap: 1rem;
 }
 .type-card {
-  background: var(--bg-card);
+  background: #162035;
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.5rem;
+  padding: 0;
+  overflow: hidden;
   transition: border-color var(--transition), transform var(--transition);
   cursor: default;
+}
+.type-card-body {
+  padding: 1rem 1.25rem 1.25rem;
+}
+.type-card-img {
+  width: 100%;
+}
+.type-card-img img {
+  width: 100%; height: auto; display: block;
 }
 .type-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-card); }
 .type-code-badge {
@@ -836,59 +846,71 @@ footer {
     <p class="section-desc reveal">4機能の優先順位の組み合わせで、24の固有タイプが生まれます。</p>
     <div class="types-grid">
       <div class="type-card V reveal">
-        <div class="type-code-badge">VELF</div>
-        <h3 class="type-name">ナポレオン</h3>
-        <p class="type-catchcopy">意志と情熱で時代を動かす</p>
-        <div class="type-func-order" aria-label="機能優先順位">
-          <span class="func-chip V">意志</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip E">感情</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip L">論理</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip F">身体</span>
+        <div class="type-card-img"><img src="img/VELF.png" alt="ナポレオン" loading="lazy"></div>
+        <div class="type-card-body">
+          <div class="type-code-badge">VELF</div>
+          <h3 class="type-name">ナポレオン</h3>
+          <p class="type-catchcopy">意志と情熱で時代を動かす</p>
+          <div class="type-func-order" aria-label="機能優先順位">
+            <span class="func-chip V">意志</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip E">感情</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip L">論理</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip F">身体</span>
+          </div>
         </div>
       </div>
       <div class="type-card E reveal">
-        <div class="type-code-badge">EVLF</div>
-        <h3 class="type-name">情熱家</h3>
-        <p class="type-catchcopy">感情と意志で心を揺さぶる</p>
-        <div class="type-func-order" aria-label="機能優先順位">
-          <span class="func-chip E">感情</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip V">意志</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip L">論理</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip F">身体</span>
+        <div class="type-card-img"><img src="img/EVLF.png" alt="情熱家" loading="lazy"></div>
+        <div class="type-card-body">
+          <div class="type-code-badge">EVLF</div>
+          <h3 class="type-name">情熱家</h3>
+          <p class="type-catchcopy">感情と意志で心を揺さぶる</p>
+          <div class="type-func-order" aria-label="機能優先順位">
+            <span class="func-chip E">感情</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip V">意志</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip L">論理</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip F">身体</span>
+          </div>
         </div>
       </div>
       <div class="type-card L reveal">
-        <div class="type-code-badge">LEVF</div>
-        <h3 class="type-name">ソクラテス</h3>
-        <p class="type-catchcopy">真理を問い続ける哲学者</p>
-        <div class="type-func-order" aria-label="機能優先順位">
-          <span class="func-chip L">論理</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip E">感情</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip V">意志</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip F">身体</span>
+        <div class="type-card-img"><img src="img/LEVF.png" alt="ソクラテス" loading="lazy"></div>
+        <div class="type-card-body">
+          <div class="type-code-badge">LEVF</div>
+          <h3 class="type-name">ソクラテス</h3>
+          <p class="type-catchcopy">真理を問い続ける哲学者</p>
+          <div class="type-func-order" aria-label="機能優先順位">
+            <span class="func-chip L">論理</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip E">感情</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip V">意志</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip F">身体</span>
+          </div>
         </div>
       </div>
       <div class="type-card F reveal">
-        <div class="type-code-badge">FLEV</div>
-        <h3 class="type-name">ナチュラリスト</h3>
-        <p class="type-catchcopy">感覚と論理で自然と調和する</p>
-        <div class="type-func-order" aria-label="機能優先順位">
-          <span class="func-chip F">身体</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip L">論理</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip E">感情</span>
-          <span class="func-arrow" aria-hidden="true">›</span>
-          <span class="func-chip V">意志</span>
+        <div class="type-card-img"><img src="img/FLEV.png" alt="ナチュラリスト" loading="lazy"></div>
+        <div class="type-card-body">
+          <div class="type-code-badge">FLEV</div>
+          <h3 class="type-name">ナチュラリスト</h3>
+          <p class="type-catchcopy">感覚と論理で自然と調和する</p>
+          <div class="type-func-order" aria-label="機能優先順位">
+            <span class="func-chip F">身体</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip L">論理</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip E">感情</span>
+            <span class="func-arrow" aria-hidden="true">›</span>
+            <span class="func-chip V">意志</span>
+          </div>
         </div>
       </div>
     </div>
