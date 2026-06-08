@@ -76,7 +76,7 @@ body {
   background: #1A2038;
   border: 1px solid var(--border);
   border-radius: 24px;
-  padding: 2.5rem 2rem;
+  padding: 0;
   text-align: center;
   position: relative;
   overflow: hidden;
@@ -87,20 +87,24 @@ body {
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 3px;
   background: linear-gradient(90deg, var(--type-color), transparent);
+  z-index: 1;
+}
+.result-hero-body {
+  padding: 1.5rem 1.75rem 2rem;
 }
 @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
 .type-code-big {
   display: inline-block;
   font-family: 'Inter', sans-serif;
-  font-size: clamp(2rem, 7vw, 3rem);
-  font-weight: 700; letter-spacing: .15em;
+  font-size: .92rem;
+  font-weight: 700; letter-spacing: .18em;
   color: var(--type-color);
   background: var(--type-muted);
-  padding: .5rem 1.5rem;
-  border-radius: 12px;
-  margin-bottom: 1.25rem;
-  border: 1px solid color-mix(in srgb, var(--type-color) 30%, transparent);
+  padding: .35rem 1.4rem;
+  border-radius: 100px;
+  margin-bottom: 1rem;
+  border: 1px solid color-mix(in srgb, var(--type-color) 40%, transparent);
 }
 .type-name-big {
   font-family: 'Noto Serif JP', serif;
@@ -339,10 +343,21 @@ body {
 
 /* ── Character image ───────── */
 .type-chara-img {
-  width: 100%; max-width: 260px; margin: 0 auto 1.25rem;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  position: relative;
 }
 .type-chara-img img {
   width: 100%; height: auto; display: block;
+}
+.type-chara-img::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 140px;
+  background: linear-gradient(to bottom, transparent 0%, #1A2038 100%);
+  pointer-events: none;
 }
 
 /* ── Axis Explanation ─────── */
@@ -735,11 +750,13 @@ function buildHTML(code, t, order, scores, isBorder) {
       <div class="type-chara-img">
         <img src="img/${code}.png" alt="${t.name}のキャラクター" onerror="this.style.display='none'">
       </div>
-      <div class="type-code-big" aria-label="タイプコード ${code}">${code}</div>
-      <h1 class="type-name-big" id="typeName">${t.name}</h1>
-      <p class="type-catchcopy">${t.catchcopy}</p>
-      <div class="func-order" aria-label="機能優先順位">${funcOrder}</div>
-      <p class="type-desc">${t.desc}</p>
+      <div class="result-hero-body">
+        <div class="type-code-big" aria-label="タイプコード ${code}">${code}</div>
+        <h1 class="type-name-big" id="typeName">${t.name}</h1>
+        <p class="type-catchcopy">${t.catchcopy}</p>
+        <div class="func-order" aria-label="機能優先順位">${funcOrder}</div>
+        <p class="type-desc">${t.desc}</p>
+      </div>
     </section>
 
     ${borderHTML}
