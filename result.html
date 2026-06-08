@@ -73,59 +73,195 @@ body {
 
 /* ── Hero card ────────────── */
 .result-hero {
-  background: #1A2038;
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  padding: 0;
-  text-align: center;
+  --bg-deep: #071124;
+  --card-bg: #101832;
+  --card-bg-2: #0b142b;
+  --blue: #398cff;
+  --blue-soft: rgba(56, 140, 255, 0.45);
+  --gold: #d8a84b;
+  --text-main: #f4efe4;
+  --text-sub: #c8d1e6;
+  --text-muted-hero: #8f9ab8;
+
   position: relative;
+  width: min(92vw, 720px);
+  margin: 0 auto 1.5rem;
+  padding: clamp(28px, 5vw, 52px) clamp(22px, 5vw, 56px) 48px;
+  border-radius: 34px;
+
+  background:
+    radial-gradient(circle at 50% 18%, rgba(32, 112, 255, 0.24), transparent 32%),
+    radial-gradient(circle at 50% 0%, rgba(54, 129, 255, 0.12), transparent 42%),
+    linear-gradient(180deg, var(--card-bg) 0%, var(--card-bg-2) 100%);
+
+  border: 1px solid rgba(91, 153, 255, 0.38);
+
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.035) inset,
+    0 0 36px rgba(51, 127, 255, 0.18),
+    0 28px 80px rgba(0, 0, 0, 0.46);
+
+  color: var(--text-main);
+  text-align: center;
   overflow: hidden;
-  margin-bottom: 1.25rem;
   animation: fadeUp .5s ease both;
 }
+
+/* インナーグロー */
 .result-hero::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--type-color), transparent);
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow:
+    0 0 0 1px rgba(72, 145, 255, 0.42) inset,
+    0 0 32px rgba(72, 145, 255, 0.22) inset;
+  z-index: 0;
+}
+
+/* 下部暗化グラデーション */
+.result-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 38%;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(6, 11, 28, 0.26) 58%,
+    rgba(4, 8, 20, 0.38) 100%
+  );
+  z-index: 0;
+}
+
+.result-hero > * {
+  position: relative;
   z-index: 1;
 }
+
 .result-hero-body {
-  padding: 1.5rem 1.75rem 2rem;
+  margin-top: 0;
 }
+
 @keyframes fadeUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
+/* LVEF バッジ */
 .type-code-big {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: .92rem;
-  font-weight: 700; letter-spacing: .18em;
-  color: var(--type-color);
-  background: var(--type-muted);
-  padding: .35rem 1.4rem;
-  border-radius: 100px;
-  margin-bottom: 1rem;
-  border: 1px solid color-mix(in srgb, var(--type-color) 40%, transparent);
-}
-.type-name-big {
-  font-family: 'Noto Serif JP', serif;
-  font-weight: 700;
-  font-size: clamp(1.5rem, 5vw, 2.2rem);
-  margin-bottom: .5rem;
-}
-.type-catchcopy {
-  font-style: italic;
-  color: var(--brand);
-  font-size: clamp(.9rem, 2.5vw, 1.05rem);
-  margin-bottom: 1.75rem;
-  font-family: 'Noto Serif JP', serif;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 190px;
+  padding: 13px 34px;
+  margin: 0 auto 24px;
+
+  border-radius: 18px;
+  border: 1px solid rgba(68, 145, 255, 0.78);
+
+  background:
+    radial-gradient(circle at 50% 0%, rgba(75, 153, 255, 0.42), transparent 60%),
+    linear-gradient(180deg, rgba(34, 81, 160, 0.72), rgba(18, 42, 94, 0.84));
+
+  color: #4b94ff;
+  font-size: clamp(30px, 6vw, 46px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.22em;
+  text-indent: 0.22em;
+
+  box-shadow:
+    0 0 28px rgba(48, 129, 255, 0.38),
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset;
 }
 
-/* function order bar */
-.func-order {
-  display: flex; justify-content: center; align-items: center;
-  gap: .4rem; flex-wrap: wrap;
-  margin-bottom: 1.75rem;
+/* バッジ左右の装飾線 */
+.type-code-big::before,
+.type-code-big::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: clamp(72px, 18vw, 160px);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(216, 168, 75, 0.68),
+    transparent
+  );
+  transform: translateY(-50%);
 }
+
+.type-code-big::before {
+  right: calc(100% + 22px);
+}
+
+.type-code-big::after {
+  left: calc(100% + 22px);
+}
+
+/* タイプ名 */
+.type-name-big {
+  margin: 0 0 12px;
+
+  font-family:
+    "Hiragino Mincho ProN",
+    "Yu Mincho",
+    "YuMincho",
+    "Noto Serif JP",
+    serif;
+
+  font-size: clamp(48px, 9vw, 76px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: 0.14em;
+  text-indent: 0.14em;
+
+  color: #f5efdf;
+
+  text-shadow:
+    0 2px 0 rgba(0, 0, 0, 0.35),
+    0 0 18px rgba(255, 255, 255, 0.08);
+}
+
+/* キャッチコピー */
+.type-catchcopy {
+  position: relative;
+
+  margin: 0 auto 34px;
+  padding-bottom: 22px;
+
+  color: var(--gold);
+  font-size: clamp(15px, 2.8vw, 20px);
+  line-height: 1.8;
+  letter-spacing: 0.16em;
+}
+
+.type-catchcopy::after {
+  content: "◇";
+  position: absolute;
+  left: 50%;
+  bottom: -8px;
+  transform: translateX(-50%);
+
+  color: var(--gold);
+  font-size: 14px;
+  text-shadow: 0 0 12px rgba(216, 168, 75, 0.45);
+}
+
+/* ── Function order ────────── */
+.func-order {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  margin: 0 auto 36px;
+}
+
 .func-rank {
   display: flex; flex-direction: column; align-items: center; gap: .2rem;
 }
@@ -133,25 +269,93 @@ body {
   font-family: 'Inter', sans-serif; font-size: .65rem;
   color: var(--text-muted); font-weight: 600;
 }
+
 .func-badge {
-  padding: .35rem .8rem;
-  border-radius: 100px;
-  font-family: 'Inter', sans-serif;
-  font-size: .82rem; font-weight: 700;
-  border: 1px solid;
-  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 86px;
+  padding: 10px 18px;
+  border-radius: 999px;
+
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+
+  color: #dbe8ff;
+  background: rgba(22, 38, 82, 0.74);
+  border: 1px solid rgba(100, 155, 255, 0.42);
+
+  box-shadow:
+    0 0 18px rgba(54, 131, 255, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.035) inset;
 }
-.func-badge.V { color:var(--axis-V); border-color:rgba(214,168,74,.4); background:var(--axis-V-muted); }
-.func-badge.E { color:var(--axis-E); border-color:rgba(216,79,139,.4); background:var(--axis-E-muted); }
-.func-badge.L { color:var(--axis-L); border-color:rgba(59,140,255,.4); background:var(--axis-L-muted); }
-.func-badge.F { color:var(--axis-F); border-color:rgba(120,185,90,.4); background:var(--axis-F-muted); }
+
+.func-badge.V { color:#f1bd54; border-color:rgba(228,170,68,.78); background:rgba(116,77,22,.45); }
+.func-badge.E { color:#ff6ea8; border-color:rgba(255,83,149,.78); background:rgba(117,28,76,.44); }
+.func-badge.L { color:#55a0ff; border-color:rgba(67,145,255,.78); background:rgba(22,74,145,.46); }
+.func-badge.F { color:#81d957; border-color:rgba(121,208,80,.78); background:rgba(47,103,35,.44); }
+
 .func-arrow { color:var(--text-muted); font-size:.9rem; padding-bottom:1.1rem; }
 
+/* 説明文 */
 .type-desc {
-  color: var(--text-secondary);
-  font-size: clamp(.88rem, 2.5vw, 1rem);
-  line-height: 1.85;
+  width: min(100%, 560px);
+  margin: 0 auto;
+
+  color: rgba(240, 244, 255, 0.86);
+  font-size: clamp(15px, 2.6vw, 18px);
+  line-height: 2.08;
+  letter-spacing: 0.04em;
   text-align: left;
+
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.32);
+}
+
+/* ── Hero animations ────────── */
+.result-hero:hover .type-chara-img::before {
+  animation: heroAuraPulse 2.4s ease-in-out infinite;
+}
+.result-hero:hover .type-chara-img img {
+  animation: heroFloat 3.8s ease-in-out infinite;
+}
+@keyframes heroAuraPulse {
+  0%   { opacity: 0.78; transform: translateX(-50%) scale(0.96); }
+  50%  { opacity: 1;    transform: translateX(-50%) scale(1.08); }
+  100% { opacity: 0.78; transform: translateX(-50%) scale(0.96); }
+}
+@keyframes heroFloat {
+  0%   { transform: scale(1.03) translateY(0); }
+  50%  { transform: scale(1.045) translateY(-4px); }
+  100% { transform: scale(1.03) translateY(0); }
+}
+
+/* ── Hero mobile ────────────── */
+@media (max-width: 520px) {
+  .result-hero {
+    width: calc(100vw - 24px);
+    padding: 28px 18px 36px;
+    border-radius: 26px;
+  }
+  .type-chara-img {
+    width: min(100%, 360px);
+    margin-top: -4px;
+    margin-bottom: -24px;
+  }
+  .type-code-big {
+    min-width: 148px;
+    padding: 11px 26px;
+    margin-bottom: 20px;
+  }
+  .type-code-big::before { right: calc(100% + 12px); }
+  .type-code-big::after  { left:  calc(100% + 12px); }
+  .type-code-big::before,
+  .type-code-big::after  { width: 48px; }
+  .func-order { gap: 10px; }
+  .func-badge { min-width: 72px; padding: 9px 13px; font-size: 15px; }
+  .type-desc  { line-height: 1.95; }
 }
 
 /* ── Border type notice ────── */
@@ -343,21 +547,49 @@ body {
 
 /* ── Character image ───────── */
 .type-chara-img {
-  width: 100%;
-  max-width: none;
-  margin: 0;
   position: relative;
+  width: min(100%, 520px);
+  aspect-ratio: 2 / 3;
+  margin: -10px auto -34px;
+  display: grid;
+  place-items: center;
+  overflow: visible;
 }
-.type-chara-img img {
-  width: 100%; height: auto; display: block;
-}
-.type-chara-img::after {
-  content: '';
+
+/* 背後の発光オーラ */
+.type-chara-img::before {
+  content: "";
   position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 140px;
-  background: linear-gradient(to bottom, transparent 0%, #1A2038 100%);
-  pointer-events: none;
+  width: 82%;
+  height: 58%;
+  top: 16%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(38, 137, 255, 0.56) 0%, rgba(29, 100, 255, 0.22) 40%, transparent 70%);
+  filter: blur(22px);
+  opacity: 0.95;
+  z-index: 0;
+}
+
+.type-chara-img img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform: scale(1.03);
+  transform-origin: center center;
+  filter:
+    drop-shadow(0 24px 46px rgba(0, 0, 0, 0.48))
+    drop-shadow(0 0 24px rgba(48, 126, 255, 0.22));
+  -webkit-mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 8%, #000 84%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  -webkit-mask-composite: source-in;
+  mask-image:
+    linear-gradient(to bottom, transparent 0%, #000 8%, #000 84%, transparent 100%),
+    linear-gradient(to right, transparent 0%, #000 7%, #000 93%, transparent 100%);
+  mask-composite: intersect;
 }
 
 /* ── Axis Explanation ─────── */
