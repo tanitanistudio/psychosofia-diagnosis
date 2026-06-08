@@ -145,6 +145,7 @@ git push origin main
 - コメントも日本語で記載
 - コード変更前に変更内容と影響範囲を説明してから実装すること
 - ファイル変更後は必ず `git add / commit / push` まで行うこと
+- **git add / commit / push はユーザーに確認せず自動で実行すること**
 
 ---
 
