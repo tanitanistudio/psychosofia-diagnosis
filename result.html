@@ -313,11 +313,51 @@ body {
 
 /* ── Character image ───────── */
 .type-chara-img {
-  width: 260px; height: 260px; margin: 0 auto 1.25rem;
+  width: 100%; max-width: 260px; margin: 0 auto 1.25rem;
 }
 .type-chara-img img {
-  width: 100%; height: 100%;
-  object-fit: cover;
+  width: 100%; height: auto; display: block;
+}
+
+/* ── Axis Explanation ─────── */
+.axis-section {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+  animation: fadeUp .5s .12s ease both;
+}
+.axis-section-title {
+  font-size: .82rem; font-weight: 700; letter-spacing: .08em;
+  color: var(--text-muted); text-transform: uppercase; font-family:'Inter',sans-serif;
+  margin-bottom: 1.25rem;
+}
+.axis-row {
+  display: flex; gap: 1rem; align-items: flex-start;
+  margin-bottom: 1rem; padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+.axis-row:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+.axis-row-left {
+  display: flex; flex-direction: column; align-items: center; gap: .35rem;
+  flex-shrink: 0; width: 56px;
+}
+.axis-rank-num {
+  font-family: 'Inter', sans-serif; font-size: .62rem; font-weight: 700;
+  color: var(--text-muted);
+}
+.axis-role-name {
+  font-size: .62rem; color: var(--text-muted); text-align: center; line-height: 1.3;
+}
+.axis-row-body { flex: 1; }
+.axis-func-title { font-size: .9rem; font-weight: 700; margin-bottom: .3rem; }
+.axis-func-desc {
+  font-size: .82rem; color: var(--text-secondary); line-height: 1.65; margin-bottom: .5rem;
+}
+.axis-position-note {
+  font-size: .78rem; color: var(--text-muted); line-height: 1.6;
+  padding: .4rem .7rem; border-radius: 8px; background: var(--bg-secondary);
 }
 </style>
 </head>
@@ -464,6 +504,19 @@ const AXIS_COLORS = { V:"var(--axis-V)", E:"var(--axis-E)", L:"var(--axis-L)", F
 const AXIS_MUTED  = { V:"var(--axis-V-muted)", E:"var(--axis-E-muted)", L:"var(--axis-L-muted)", F:"var(--axis-F-muted)" };
 const RESULT_KEY  = 'aiknow_psychosofia_result';
 
+const AXIS_DETAILS = {
+  V: { label:"意志 (V)", meaning:"目標設定・意志力・自己推進力を司る機能。「何を望み、どう動くか」を決める軸。強いV機能は揺るぎない意志と行動の方向性をもたらす。" },
+  E: { label:"感情 (E)", meaning:"感情的知性・共感・表現力を司る機能。「自分や他者の感情をどう感じ、表現するか」を決める軸。強いE機能は豊かな感情表現と深い人間的つながりをもたらす。" },
+  L: { label:"論理 (L)", meaning:"論理的思考・分析・概念化を司る機能。「物事をどう体系的に理解し整理するか」を決める軸。強いL機能は鋭い分析力と構造的な問題解決力をもたらす。" },
+  F: { label:"身体 (F)", meaning:"身体感覚・実践的知性・感覚的認識を司る機能。「身体を通じた直感・行動・体験」を決める軸。強いF機能は鋭い身体感覚と現実的な実践力をもたらす。" }
+};
+const POSITION_ROLES = [
+  { name:"主機能",   note:"最も発達した核となる機能。意識しなくても自然に発揮でき、あなたのアイデンティティの中心を形成する。" },
+  { name:"補助機能", note:"主機能をサポートし、強みに深みを与える機能。比較的自然に使え、主機能の弱点を補完する。" },
+  { name:"第3機能",  note:"意識的に使えるが、エネルギーを消費しやすい領域。意識的な努力で伸ばせる成長ポイント。" },
+  { name:"劣等機能", note:"最も未発達な機能。苦手意識を感じやすいが、ここに成長の最大の可能性が秘められている。" }
+];
+
 // ─── Bootstrap ──────────────────────────────────────────────────────────────
 function init() {
   const params  = new URLSearchParams(location.search);
@@ -529,6 +582,31 @@ function renderResult(code, scores, isBorder) {
   wireShare(code, t, shareText);
 }
 
+function buildAxisExplanation(order) {
+  const rows = order.map((ax, i) => {
+    const detail = AXIS_DETAILS[ax];
+    const role   = POSITION_ROLES[i];
+    return `
+      <div class="axis-row">
+        <div class="axis-row-left">
+          <span class="axis-rank-num">${i+1}位</span>
+          <span class="func-badge ${ax}">${ax}</span>
+          <span class="axis-role-name">${role.name}</span>
+        </div>
+        <div class="axis-row-body">
+          <div class="axis-func-title" style="color:${AXIS_COLORS[ax]}">${detail.label}</div>
+          <p class="axis-func-desc">${detail.meaning}</p>
+          <p class="axis-position-note">${role.note}</p>
+        </div>
+      </div>`;
+  }).join('');
+  return `
+    <section class="axis-section" aria-label="機能軸の解説">
+      <h2 class="axis-section-title">機能軸の解説</h2>
+      ${rows}
+    </section>`;
+}
+
 function buildHTML(code, t, order, scores, isBorder) {
   const dominant = t.dominant;
 
@@ -574,6 +652,8 @@ function buildHTML(code, t, order, scores, isBorder) {
   const strItems = t.str.map(s => `<li>${s}</li>`).join('');
   const chgItems = t.chg.map(c => `<li>${c}</li>`).join('');
 
+  const axisExplanationHTML = buildAxisExplanation(order);
+
   return `
     <section class="result-hero" aria-labelledby="typeName">
       <div class="type-chara-img">
@@ -587,6 +667,7 @@ function buildHTML(code, t, order, scores, isBorder) {
     </section>
 
     ${borderHTML}
+    ${axisExplanationHTML}
     ${scoreHTML}
 
     <div class="str-chg" role="region" aria-label="強みと課題">
