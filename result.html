@@ -232,7 +232,7 @@ body {
 .type-catchcopy {
   position: relative;
 
-  margin: 0 auto 34px;
+  margin: 0 auto 18px;
   padding-bottom: 22px;
 
   color: var(--gold);
@@ -261,7 +261,7 @@ body {
   flex-wrap: wrap;
   gap: 16px;
 
-  margin: 0 auto 36px;
+  margin: 0 auto 22px;
 }
 
 .func-rank {
@@ -309,7 +309,7 @@ body {
 
   color: rgba(240, 244, 255, 0.86);
   font-size: clamp(15px, 2.6vw, 18px);
-  line-height: 2.08;
+  line-height: 1.85;
   letter-spacing: 0.04em;
   text-align: left;
 
@@ -341,9 +341,10 @@ body {
     border-radius: 26px;
   }
   .type-chara-img {
-    width: min(100%, 360px);
+    width: calc(100% - 2rem);
+    height: clamp(200px, 34vh, 260px);
     margin-top: -4px;
-    margin-bottom: -24px;
+    margin-bottom: -16px;
   }
   .type-code-big {
     min-width: 148px;
@@ -356,7 +357,7 @@ body {
   .type-code-big::after  { width: 48px; }
   .func-order { gap: 10px; }
   .func-badge { min-width: 72px; padding: 9px 13px; font-size: 15px; }
-  .type-desc  { line-height: 1.95; }
+  .type-desc  { line-height: 1.75; }
 }
 
 /* ── Border type notice ────── */
@@ -517,7 +518,7 @@ body {
   .nav { padding:0 2rem; }
 }
 @media (min-width:720px) {
-  .result-hero { padding:3rem 2.5rem; }
+  .result-hero { padding:2rem 2.5rem; }
 }
 
 /* ── Scene / Tips ─────────── */
@@ -549,9 +550,9 @@ body {
 /* ── Character image ───────── */
 .type-chara-img {
   position: relative;
-  width: min(100%, 520px);
-  aspect-ratio: 2 / 3;
-  margin: -10px auto -34px;
+  width: min(100%, 400px);
+  height: clamp(230px, 36vh, 340px);
+  margin: -10px auto -20px;
   display: grid;
   place-items: center;
   overflow: visible;
